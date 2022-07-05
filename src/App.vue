@@ -1,24 +1,68 @@
 <template>
   <div id="app">
-<Tooltip content="this is a tip" placement="bottom" ><div class="btn">bottom tip message</div></Tooltip>
-<Slider v-model="value"></Slider>
-    <router-view/>
+    <Tooltip content="this is a tip" placement="bottom"
+      ><div class="btn">bottom tip message</div></Tooltip
+    >
+    <Slider v-model="value"></Slider>
+    <Slider v-model="value"></Slider>
+    <button @click="showModel = true">show model</button>
+    <Model :showModel.sync="showModel" title="提示">
+      <p v-for="item in data" :key="item.index">{{ item.name }}</p>
+      <span slot="foot"
+        ><button class="btn" @click="cancel">取消</button
+        ><button
+          class="btn"
+          style="background-color: #409eff; color: #fff; margin-left: 20px"
+          @click="confirm"
+        >
+          确定
+        </button></span
+      >
+    </Model>
+    <router-view />
   </div>
 </template>
 <script>
-import Tooltip from './components/tooltip.vue'
-import Slider from './components/slider.vue'
-export default{
+import Tooltip from "./components/tooltip.vue";
+import Slider from "./components/slider.vue";
+import Model from "./components/model.vue";
+export default {
   components: {
     Tooltip,
-    Slider
+    Slider,
+    Model,
   },
-  data(){
-    return{
-      value:25
-    }
-  }
-}
+  data() {
+    return {
+      value: 25,
+      showModel: false,
+      data:[]
+    };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.data = [
+        { name: "oooooooooooooooooooo", index: 0 },
+        { name: "oooooooooooooooooooo", index: 1 },
+        { name: "oooooooooooooooooooo", index: 2 },
+        { name: "oooooooooooooooooooo", index: 3 },
+      ];
+    }, 3000);
+  },
+  methods: {
+    // close(e) {
+    //   this.showModel = e;
+    // },
+    confirm() {
+      console.log("comfirm!");
+      this.showModel = false;
+    },
+    cancel() {
+      console.log("cancel!");
+      this.showModel = false;
+    },
+  },
+};
 </script>
 <style lang="less">
 #app {
@@ -27,7 +71,7 @@ export default{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  .btn{
+  .btn {
     display: inline-block;
     margin-bottom: 0;
     font-weight: 400;
@@ -47,8 +91,9 @@ export default{
     padding: 6px 15px;
     font-size: 12px;
     border-radius: 4px;
-    transform: translate3d(0,0,0);
-    transition: color .2s linear,background-color .2s linear,border .2s linear;
+    transform: translate3d(0, 0, 0);
+    transition: color 0.2s linear, background-color 0.2s linear,
+      border 0.2s linear;
     color: #657180;
     background-color: #f7f7f7;
     border-color: #d7dde4;
