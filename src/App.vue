@@ -19,6 +19,10 @@
         </button></span
       >
     </Model>
+    <Tabs value="name1">
+      <Tabs-pane label="tab1" name="name1">content1</Tabs-pane>
+      <Tabs-pane label="tab2" name="name2">content2</Tabs-pane>
+    </Tabs>
     <router-view />
   </div>
 </template>
@@ -26,11 +30,15 @@
 import Tooltip from "./components/tooltip.vue";
 import Slider from "./components/slider.vue";
 import Model from "./components/model.vue";
+import Tabs from "./components/tabs/tabs.vue";
+import TabsPane from "./components/tabs/pane.vue";
 export default {
   components: {
     Tooltip,
     Slider,
     Model,
+    Tabs,
+    TabsPane
   },
   data() {
     return {
