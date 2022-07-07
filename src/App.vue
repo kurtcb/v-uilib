@@ -21,7 +21,11 @@
     </Model>
     <Tabs value="name1">
       <Tabs-pane label="tab1" name="name1">content1</Tabs-pane>
-      <Tabs-pane label="tab2" name="name2">content2</Tabs-pane>
+      <Tabs-pane label="tab2222" name="name2">content22222</Tabs-pane>
+      <Tabs-pane label="tab3333333333" name="name3"
+        >content3333333333333333333</Tabs-pane
+      >
+      <Tabs-pane label="tab44" name="name4">content44</Tabs-pane>
     </Tabs>
     <router-view />
   </div>
@@ -38,13 +42,13 @@ export default {
     Slider,
     Model,
     Tabs,
-    TabsPane
+    TabsPane,
   },
   data() {
     return {
       value: 25,
       showModel: false,
-      data:[]
+      data: [],
     };
   },
   mounted() {
@@ -77,8 +81,11 @@ export default {
   padding: 50px;
   margin: 0;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+  height: 500px;
   .btn {
     display: inline-block;
     margin-bottom: 0;
